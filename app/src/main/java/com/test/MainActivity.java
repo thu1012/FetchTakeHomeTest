@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 itemAdaptor.clear();
                 itemAdaptor.addAll(currentDisplayItems);
                 itemAdaptor.notifyDataSetChanged();
+
+                TextView textView = findViewById(R.id.itemTextField);
+                textView.setText("Items (list id: " + selectedListId + " )");
             }
 
         });
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     Item item = parseLine(line);
                     if (item == null) continue;
                     ArrayList<String> temp = result.getOrDefault(item.listId, new ArrayList<>());
-                    temp.add(item.name + "\t(" + item.id + ")");
+                    temp.add(item.name + "\t(id: " + item.id + ")");
                     result.put(item.listId, temp);
                 }
 
